@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulir Pembelian</title>
+  <link rel="stylesheet" href="beli.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Formulir Pembelian</h2>
+    <form action="invoice.html" method="get">
+      <input name="cek" value="cek" style="visibility: 0; opacity: 0;"/>
+      <div class="form-group">
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama" required>
+    </div>
+    <div class="form-group">
+        <label for="alamat">Alamat:</label>
+        <textarea id="alamat" name="alamat" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+        <label for="telepon">Telepon:</label>
+        <input type="tel" id="telepon" name="telepon">
+    </div>
+
+      <div class="form-harga">
+        <div id="product-info"></div>
+      </div>
+
+      <button type="submit">Pesan</button>
+    </form>
+  </div>
+  <script>
+     const productData = JSON.parse(localStorage.getItem('productData'));
+
+const productInfoDiv = document.getElementById('product-info');
+
+if (productData) {
+    for (const key in productData) {
+        if (productData.hasOwnProperty(key)) {
+            const product = productData[key];
+            const productElement = document.createElement('div');
+            productElement.innerHTML = `
+                        <label>Nama Produk: ${product.name}</label><br>
+                        <label>Harga Produk: Rp ${product.price}</label>
+                    `;
+            productInfoDiv.appendChild(productElement);
+        }
+    }
+} else {
+    productInfoDiv.innerHTML = '<p>Tidak ada produk yang dipilih.</p>';
+}
+  </script>
+</body>
+</html>

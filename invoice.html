@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Invoice</h1>
+    <div class="invoice-container">
+        <h2>Customer Information</h2>
+        <div class="form-group">
+            <label for="nama">Nama:</label>
+            <div id="nama"></div>
+        </div>
+        <div class="form-group">
+            <label for="alamat">Alamat:</label>
+            <div id="alamat"></div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <div id="email"></div>
+        </div>
+        <div class="form-group">
+            <label for="telepon">Telepon:</label>
+            <div id="telepon"></div>
+        </div>
+
+        <div class="form-harga">
+            <h2>Product Information</h2>
+            <div id="product-info"></div>
+        </div>
+    </div>
+
+    <script>
+        // Function to get URL parameters
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Populate form data
+        document.getElementById('nama').textContent = getQueryParam('nama') || 'N/A';
+        document.getElementById('alamat').textContent = getQueryParam('alamat') || 'N/A';
+        document.getElementById('email').textContent = getQueryParam('email') || 'N/A';
+        document.getElementById('telepon').textContent = getQueryParam('telepon') || 'N/A';
+
+        // Get product data from localStorage and populate product-info
+        const productData = JSON.parse(localStorage.getItem('productData'));
+        const productInfoDiv = document.getElementById('product-info');
+
+        if (productData) {
+            for (const key in productData) {
+                if (productData.hasOwnProperty(key)) {
+                    const product = productData[key];
+                    const productElement = document.createElement('div');
+                    productElement.innerHTML = `
+                        <p><strong>Nama Produk:</strong> ${product.name}</p>
+                        <p><strong>Harga Produk:</strong> Rp ${product.price}</p>
+                    `;
+                    productInfoDiv.appendChild(productElement);
+                }
+            }
+        } else {
+            productInfoDiv.innerHTML = '<p>Tidak ada produk yang dipilih.</p>';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+  }
+  
+  .form-harga {
+    border: 2px solid #000; /* Warna border hitam */
+    padding: 20px; /* Jarak dalam border */
+    margin: 20px 0; /* Jarak luar border */
+    border-radius: 5px; /* Sudut border melengkung */
+}
+#product-info {
+    margin-top: 10px; /* Jarak atas pada produk info */
+    position: relative;
+    text-align: center;
+}
